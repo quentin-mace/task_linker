@@ -4,6 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Employee;
 use App\Entity\Role;
+use App\Factory\EmployeeFactory;
+use App\Factory\ProjectFactory;
+use App\Factory\RoleFactory;
+use App\Factory\StatusFactory;
 use App\Factory\TagFactory;
 use App\Factory\TaskFactory;
 use App\Repository\RoleRepository;
@@ -21,47 +25,84 @@ class AppFixtures extends Fixture
     {
         $this->generateRoles($manager);
         $this->generateEmployees($manager);
-        TaskFactory::createMany(5);
-        TagFactory::createMany(5);
+        $this->generateProjects(10);
     }
 
-    private function generateRoles(ObjectManager $manager): void
+    private function generateRoles(): void
     {
-        $admin = new Role();
-        $admin->setName('admin');
-        $manager->persist($admin);
+        RoleFactory::createOne([
+            'name' => 'admin',
+        ]);
 
-        $user = new Role();
-        $user->setName('user');
-        $manager->persist($user);
-
-        $manager->flush();
+        RoleFactory::createOne([
+            'name' => 'user',
+        ]);
     }
 
-    private function generateEmployees(ObjectManager $manager): void
+    private function generateEmployees(): void
     {
-        $admin = new Employee();
-        $admin->setFirstName('admin');
-        $admin->setLastName('admin');
-        $admin->setEmail('admin@test.io');
-        $admin->setPassword($this->passwordHasher->hashPassword($admin, 'admin'));
-        $admin->setRole($this->roleRepository->findOneBy(['name' => 'admin']));
-        $admin->setIsActive(true);
-        $admin->setContract('CDI');
-        $admin->setHiringDate(new DateTimeImmutable('2020-01-01'));
-        $manager->persist($admin);
+        EmployeeFactory::createOne([
+            'firstName' => 'admin',
+            'lastName' => 'admin',
+            'email' => 'admin@test.io',
+            'password' => 'admin',
+            'role' => $this->roleRepository->findOneBy(['name' => 'admin']),
+            'isActive' => true,
+            'contract' => 'CDI',
+            'hiringDate' => new DateTimeImmutable('2020-01-01'),
+        ]);
 
-        $user = new Employee();
-        $user->setFirstName('user');
-        $user->setLastName('user');
-        $user->setEmail('user@test.io');
-        $user->setPassword($this->passwordHasher->hashPassword($admin, 'admin'));
-        $user->setRole($this->roleRepository->findOneBy(['name' => 'user']));
-        $user->setIsActive(true);
-        $user->setContract('CDD');
-        $user->setHiringDate(new DateTimeImmutable('2025-01-01'));
-        $manager->persist($user);
+        EmployeeFactory::createOne([
+            'firstName' => 'user',
+            'lastName' => 'user',
+            'email' => 'user@test.io',
+            'password' => 'user',
+            'role' => $this->roleRepository->findOneBy(['name' => 'user']),
+            'isActive' => true,
+            'contract' => 'CDD',
+            'hiringDate' => new DateTimeImmutable('2020-01-01'),
+        ]);
+    }
 
-        $manager->flush();
+    private function generateProjects(int $number): void
+    {
+        for ($i = 0; $i < $number; $i++) {
+            $this->generateProject();
+        }
+    }
+
+    private function generateProject(): void
+    {
+        $project = ProjectFactory::createOne();
+
+        $todo = StatusFactory::createOne([
+            'name' => 'To Do',
+            'project' => $project,
+        ]);
+        $doing = StatusFactory::createOne([
+            'name' => 'Doing',
+            'project' => $project,
+        ]);
+        $done = StatusFactory::createOne([
+            'name' => 'Done',
+            'project' => $project,
+        ]);
+
+        TaskFactory::createMany(2, [
+            'status' => $todo,
+            'project' => $project,
+        ]);
+        TaskFactory::createOne([
+            'status' => $doing,
+            'project' => $project,
+        ]);
+        TaskFactory::createOne([
+            'status' => $done,
+            'project' => $project,
+        ]);
+
+        TagFactory::createMany(3, [
+            'project' => $project,
+        ]);
     }
 }

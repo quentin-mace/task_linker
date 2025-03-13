@@ -1,27 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Projets{% endblock %}
+{% block title %}
+    Liste des Projets
+{% endblock %}
+
+
+{% block titlePage %}
+    <h1>Projets</h1>
+{% endblock %}
 
 {% block body %}
-    <div id="content">
-        <div id="projects-container">
-            {% for project in projects %}
-                <article class="card-project">
-                    <a href="#">
-                        <h2>{{ project.name }}</h2>
-                    </a>
-                    <div class="card-project-icons">
-                        <a href="#"><i class="fa-solid fa-pen"></i></a>
-                        <a href="#"><i class="fa-solid fa-trash"></i></a>
-                    </div>
-                </article>
-            {% endfor %}
+    <div id="projects-container">
+        {% for project in projects %}
             <article class="card-project">
-                <a href="#">
-                    <i class="fa-solid fa-circle-plus add-project-icon"></i>
-                    <h2>Ajouter un projet</h2>
+                <a href="{{ path('app_home_show', {id: project.id}) }}">
+                    <h2>{{ project.name }}</h2>
                 </a>
+                <div class="card-project-icons">
+                    <a href="{{ path('app_home_edit', {id: project.id}) }}"><i class="fa-solid fa-pen"></i></a>
+                    <a href="{{ path('app_home_delete', {id: project.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                </div>
             </article>
-        </div>
+        {% endfor %}
+        <article class="card-project">
+            <a href="{{ path('app_home_create') }}">
+                <i class="fa-solid fa-circle-plus add-project-icon"></i>
+                <h2>Ajouter un projet</h2>
+            </a>
+        </article>
     </div>
 {% endblock %}
