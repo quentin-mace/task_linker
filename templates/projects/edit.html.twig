@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if action == 'create' %}
+        Nouveau Projet
+    {% else %}
+        {{ project.name }}
+    {% endif %}
+{% endblock %}
+
+
+{% block titlePage %}
+    {% if action == 'create' %}
+        <h1>Nouveau Projet</h1>
+    {% else %}
+        <h1>{{ project.name }}</h1>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <br>
+        <button class="button button-submit">Modifier</button>
+    {{ form_end(form) }}
+{% endblock %}

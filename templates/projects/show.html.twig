@@ -12,7 +12,7 @@
             <div class="avatar">{{ employee.firstName|first|upper }}{{ employee.lastName|first|upper }}</div>
             {% endfor %}
         </div>
-        <a class="button" href="#">Modifier</a>
+        <a class="button" href="{{ path('app_home_edit', {id: project.id}) }}">Modifier</a>
     </div>
 {% endblock %}
 
