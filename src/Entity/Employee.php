@@ -71,6 +71,11 @@ class Employee implements UserInterface, PasswordAuthenticatedUserInterface
         $this->tasks = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return ucfirst($this->getFirstName()) . ' ' . ucfirst($this->getLastName());
+    }
+
     public function getId(): ?int
     {
         return $this->id;

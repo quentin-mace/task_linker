@@ -3,14 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use App\Entity\Task;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
+use App\Repository\StatusRepository;
 use App\Repository\TaskRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/', name: 'app_home')]
@@ -19,7 +22,12 @@ final class ProjectController extends AbstractController
     #[Route('/', name: '')]
     #[Route('/projets', name: '_index')]
     #[Route('/{id}/delete', name: '_delete')]
-    public function index(?Project $project, ProjectRepository $projectRepository, TaskRepository $taskRepository, EntityManagerInterface $entityManager): Response
+    public function index(
+        ?Project $project,
+        ProjectRepository $projectRepository,
+        TaskRepository $taskRepository,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         if ($project) {
             $entityManager->remove($project);
@@ -38,8 +46,19 @@ final class ProjectController extends AbstractController
     }
 
     #[Route('/{id}', name: '_show', requirements: ['id' => '\d+'], methods: ['GET'])]
-    public function show(Project $project): Response
+    public function show(
+        Project $project,
+        EntityManagerInterface $entityManager,
+        #[MapQueryParameter] ?int $taskId = null,
+        TaskRepository $taskRepository,
+    ): Response
     {
+        if ($taskId) {
+            $task = $taskRepository->find($taskId);
+            $entityManager->remove($task);
+            $entityManager->flush();
+        }
+
         return $this->render('projects/show.html.twig', [
             'project' => $project,
         ]);
