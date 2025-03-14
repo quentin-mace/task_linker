@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if action == 'create' %}
+        Créer une tâche
+    {% else %}
+        {{ task.title }}
+    {% endif %}
+{% endblock %}
+
+
+{% block titlePage %}
+    {% if action == 'create' %}
+        <h1>Créer une tâche</h1>
+    {% else %}
+        <h1>{{ task.title }}</h1>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <button class="button button-submit">Modifier</button>
+    {% if action == 'edit' %}
+    <a href="{{ path('app_home_show', {'id': project.id, 'taskId': task.id}) }}" class="delete-task">Supprimer la tâche</a>
+    {% endif %}
+    {{ form_end(form) }}
+{% endblock %}
+
