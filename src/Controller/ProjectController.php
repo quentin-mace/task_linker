@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
+use App\Repository\StatusRepository;
 use App\Repository\TaskRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,7 +20,12 @@ final class ProjectController extends AbstractController
     #[Route('/', name: '')]
     #[Route('/projets', name: '_index')]
     #[Route('/{id}/delete', name: '_delete')]
-    public function index(?Project $project, ProjectRepository $projectRepository, TaskRepository $taskRepository, EntityManagerInterface $entityManager): Response
+    public function index(
+        ?Project $project,
+        ProjectRepository $projectRepository,
+        TaskRepository $taskRepository,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         if ($project) {
             $entityManager->remove($project);
