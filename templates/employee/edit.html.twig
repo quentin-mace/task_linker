@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% set employeeName %}
+    {{ employee }}
+{% endset %}
+{% block title %}
+    {{ employeeName }}
+{% endblock %}
+
+
+{% block titlePage %}
+    <h1>{{ employeeName }}</h1>
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.first_name) }}
+    {{ form_row(form.last_name) }}
+    {{ form_row(form.email) }}
+    <div class="form-flex">
+        {{ form_row(form.hiring_date)  }}
+        {{ form_row(form.contract) }}
+    </div>
+    <button class="button button-submit">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}
