@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
@@ -16,6 +19,8 @@ class Task
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: 'Le titre de la tâche ne peut pas être null')]
+    #[Assert\Length(min: 3, max: 255, minMessage: 'Le nom de la tâche est trop court (minimum 3 lettres)')]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
@@ -25,6 +30,8 @@ class Task
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $test = null;
 
+    #[Assert\NotBlank]
+    #[Assert\GreaterThanOrEqual(value: new DateTime('now'), message: 'La deadline ne peux pas être déja passée')]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $deadline = null;
 

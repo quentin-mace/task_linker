@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -19,6 +20,7 @@ class Employee implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Email()]
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
@@ -34,12 +36,18 @@ class Employee implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[Assert\NotBlank(message: 'Le prénom est obligatoire')]
+    #[Assert\Length(min: 2, max: 255, minMessage: 'Le prénom est trop court (minimum 2 lettres)')]
     #[ORM\Column(length: 255)]
     private ?string $first_name = null;
 
+    #[Assert\NotBlank(message: 'Le nom de famille est obligatoire')]
+    #[Assert\Length(min: 2, max: 255, minMessage: 'Le nom de famille est trop court (minimum 2 lettres)')]
     #[ORM\Column(length: 255)]
     private ?string $last_name = null;
 
+    #[Assert\NotBlank(message: 'Le contrat est obligatoire')]
+    #[Assert\Length(min: 2, max: 255, minMessage: 'Le contrat est trop court (minimum 2 lettres)')]
     #[ORM\Column(length: 255)]
     private ?string $contract = null;
 
