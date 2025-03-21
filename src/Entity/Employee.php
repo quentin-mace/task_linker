@@ -52,7 +52,7 @@ class Employee implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Project>
      */
-    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'employee')]
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'employees')]
     private Collection $projects;
 
     #[ORM\ManyToOne(inversedBy: 'employees')]

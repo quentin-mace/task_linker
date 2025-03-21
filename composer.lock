@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b16b1902e1b5b444fc44122cb0520a6",
+    "content-hash": "d2aff46abeb8d49de64e999ec31d7b4b",
     "packages": [
         {
             "name": "composer/semver",
@@ -1303,16 +1303,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "b115554301161fa21467629f1e1391c1936de517"
+                "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/b115554301161fa21467629f1e1391c1936de517",
-                "reference": "b115554301161fa21467629f1e1391c1936de517",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
+                "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
                 "shasum": ""
             },
             "require": {
@@ -1358,7 +1358,7 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/4.0.3"
+                "source": "https://github.com/egulias/EmailValidator/tree/4.0.4"
             },
             "funding": [
                 {
@@ -1366,7 +1366,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-27T00:36:43+00:00"
+            "time": "2025-03-06T22:45:56+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -10122,16 +10122,16 @@
         },
         {
             "name": "zenstruck/foundry",
-            "version": "v2.3.7",
+            "version": "v2.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/foundry.git",
-                "reference": "2f523dfb812d4bde5d35f26993c29b6c61aaef01"
+                "reference": "8356b539f11af8786339a952fd71e6e15b40fb14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/2f523dfb812d4bde5d35f26993c29b6c61aaef01",
-                "reference": "2f523dfb812d4bde5d35f26993c29b6c61aaef01",
+                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/8356b539f11af8786339a952fd71e6e15b40fb14",
+                "reference": "8356b539f11af8786339a952fd71e6e15b40fb14",
                 "shasum": ""
             },
             "require": {
@@ -10215,7 +10215,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/foundry/issues",
-                "source": "https://github.com/zenstruck/foundry/tree/v2.3.7"
+                "source": "https://github.com/zenstruck/foundry/tree/v2.3.8"
             },
             "funding": [
                 {
@@ -10223,7 +10223,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-07T17:56:53+00:00"
+            "time": "2025-03-14T13:49:16+00:00"
         }
     ],
     "aliases": [],
