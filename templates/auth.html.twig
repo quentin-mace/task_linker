@@ -8,8 +8,7 @@
         <div class="auth-form">
             <h1 class="auth-title">
                 {% block title %}{% endblock %}
-            </h1>
-            <h2 class="auth-subtitle">{% block subtitle %}{% endblock %}</h2>
+            </h1>{% block subtitle %}{% endblock %}
             <div class="auth-form-content">
                 {% block body %}{% endblock %}
             </div>

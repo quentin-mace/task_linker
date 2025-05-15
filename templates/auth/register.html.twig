@@ -1,0 +1,12 @@
+{% extends 'auth.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        <button class="button button-submit">Enregistrer</button>
+    {{ form_end(form) }}
+    <a class="form-link" href="{{ path('app_dispatch_login') }}">Vous avez déja un compte ?</a>
+{% endblock %}
