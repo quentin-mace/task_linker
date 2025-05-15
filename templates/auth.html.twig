@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="auth-bg">
+        <a class="auth-logo" href="{{ path('app_home') }}" id="logo">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo TaskLinker"/>
+        </a>
+        <div class="auth-form">
+            <h1 class="auth-title">
+                {% block title %}{% endblock %}
+            </h1>
+            <h2 class="auth-subtitle">{% block subtitle %}{% endblock %}</h2>
+            <div class="auth-form-content">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

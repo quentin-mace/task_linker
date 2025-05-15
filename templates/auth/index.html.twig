@@ -1,0 +1,16 @@
+{% extends 'auth.html.twig' %}
+
+{% block title %}Bienvenue sur TaskLinker{% endblock %}
+
+{% block subtitle %}Commencez dès maintenant - gratuitement{% endblock %}
+
+{% block body %}
+    <p>Vous avez déja un compte ?</p>
+    <button class="button button-submit" onclick="window.location.href='{{ path('app_dispatch_login') }}';">Se connecter</button>
+    <div class="separator">
+        <hr class="solid">
+        <p>ou</p>
+        <hr class="solid">
+    </div>
+    <button class="button button-submit button-login" onclick="window.location.href='{{ path('app_dispatch_register') }}';">S'inscrire</button>
+{% endblock %}
