@@ -25,3 +25,6 @@
 ###< symfony/asset-mapper ###
 /.idea/
 /.idea
+.idea/
+.idea
+/.idea/*
