@@ -16,11 +16,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/', name: 'app_home')]
+#[Route('/home', name: 'app_home')]
 final class ProjectController extends AbstractController
 {
-    #[Route('/', name: '')]
-    #[Route('/projets', name: '_index')]
+    #[Route('', name: '')]
+    #[Route('/projects', name: '_index')]
     #[Route('/{id}/delete', name: '_delete')]
     public function index(
         ?Project $project,
