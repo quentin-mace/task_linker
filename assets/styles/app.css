@@ -71,6 +71,55 @@ hr.solid {
   color: white;
 }
 
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ffffff; /* Blanc pour correspondre au texte */
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  transition: all 0.2s ease;
+}
+
+.checkbox input[type="checkbox"]:checked {
+  background-color: #B1D89D; /* Couleur du bouton de votre thème */
+  border-color: #B1D89D;
+}
+
+.checkbox input[type="checkbox"]:checked::before {
+  content: "✓";
+  position: absolute;
+  color: #4D8077; /* Couleur de fond principale */
+  font-size: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkbox input[type="checkbox"]:hover {
+  border-color: #B1D89D;
+}
+
+.checkbox label {
+  cursor: pointer;
+  user-select: none;
+  color: #ffffff; /* Blanc pour correspondre au formulaire */
+  margin: 0;
+  padding: 0;
+}
+
+
+
 html,
 body {
   margin: 0;
