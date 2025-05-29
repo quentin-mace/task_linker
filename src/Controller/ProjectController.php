@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('', name: 'app_home')]
 #[Route('/home', name: 'app_home')]
 final class ProjectController extends AbstractController
 {
