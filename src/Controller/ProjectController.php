@@ -32,6 +32,7 @@ final class ProjectController extends AbstractController
     ): Response
     {
         if ($project) {
+            $this->denyAccessUnlessGranted('ROLE_ADMIN');
             $entityManager->remove($project);
             $tasks = $taskRepository->findBy(['project' => $project]);
             foreach ($tasks as $task) {
@@ -66,6 +67,7 @@ final class ProjectController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: '_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     #[Route('/create', name: '_create')]
     public function edit(?Project $project, Request $request, EntityManagerInterface $entityManager): Response
