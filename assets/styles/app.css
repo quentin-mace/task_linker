@@ -203,10 +203,13 @@ header {
   background: #4d8077;
   height: 155px;
   padding: 30px 80px 10px 80px;
+  display: flex;
+  flex-direction: column;
 }
 
 div#current-user {
   height: 55px;
+  align-self: end;
 }
 
 div#title-page h1 {
@@ -312,6 +315,19 @@ div#projects-container {
   margin-left: -12px;
   background: #1c5b50;
   border: 1px solid lightgray;
+}
+
+.avatar-user {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -12px;
+  background: #ffffff;
+  font: bold 18px Manrope, serif;
+  color: #4D8077;
 }
 
 .user-list {

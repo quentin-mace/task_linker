@@ -36,7 +36,11 @@
     </nav>
     <main>
         <header>
-            <div id="current-user"></div>
+            <div id="current-user">
+                {% if app.user %}
+                    <div class="avatar-user">{{ app.user.firstName|first|upper }}{{ app.user.lastName|first|upper }}</div>
+                {% endif %}
+            </div>
             <div id="title-page">
                 {% block titlePage %}{% endblock %}
             </div>
