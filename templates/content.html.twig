@@ -38,7 +38,7 @@
         <header>
             <div id="current-user">
                 {% if app.user %}
-                    <div class="avatar-user">{{ app.user.firstName|first|upper }}{{ app.user.lastName|first|upper }}</div>
+                    <a class="avatar-user" href="{{ path('app_dispatch_logout') }}">{{ app.user.firstName|first|upper }}{{ app.user.lastName|first|upper }}</a>
                 {% endif %}
             </div>
             <div id="title-page">

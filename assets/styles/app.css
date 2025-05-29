@@ -328,6 +328,7 @@ div#projects-container {
   background: #ffffff;
   font: bold 18px Manrope, serif;
   color: #4D8077;
+  text-decoration: none;
 }
 
 .user-list {

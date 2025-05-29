@@ -19,6 +19,8 @@ security:
             remember_me: true
             form_login:
                 default_target_path: app_home
+                target_path_parameter: app_home
+                failure_path_parameter: app_dispatch_login
                 login_path: app_dispatch_login
                 check_path: app_dispatch_login
                 enable_csrf: true
