@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'content.html.twig' %}
 
 {% block title %}
     {{ project.name }}
@@ -12,7 +12,9 @@
             <div class="avatar">{{ employee.firstName|first|upper }}{{ employee.lastName|first|upper }}</div>
             {% endfor %}
         </div>
-        <a class="button" href="{{ path('app_home_edit', {id: project.id}) }}">Modifier</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="button" href="{{ path('app_home_edit', {id: project.id}) }}">Modifier</a>
+        {% endif %}
     </div>
 {% endblock %}
 

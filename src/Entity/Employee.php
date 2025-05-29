@@ -3,16 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\EmployeeRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity('email', message: 'Cet email est déjà utilisé')]
 class Employee implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -64,7 +67,7 @@ class Employee implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $projects;
 
     #[ORM\ManyToOne(inversedBy: 'employees')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?Role $role = null;
 
     /**
@@ -77,6 +80,9 @@ class Employee implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->projects = new ArrayCollection();
         $this->tasks = new ArrayCollection();
+        $this->setHiringDate(new DateTimeImmutable());
+        $this->setContract('CDI');
+        $this->setIsActive(true);
     }
 
     public function __toString(): string

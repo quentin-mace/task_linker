@@ -23,4 +23,8 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
-/.idea/MarsCodeWorkspaceAppSettings.xml
+/.idea/
+/.idea
+.idea/
+.idea
+/.idea/*

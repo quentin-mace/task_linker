@@ -15,12 +15,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/', name: 'app_home')]
+#[IsGranted('IS_AUTHENTICATED')]
+#[Route('', name: 'app_home')]
+#[Route('/home', name: 'app_home')]
 final class ProjectController extends AbstractController
 {
-    #[Route('/', name: '')]
-    #[Route('/projets', name: '_index')]
+    #[Route('', name: '')]
+    #[Route('/projects', name: '_index')]
     #[Route('/{id}/delete', name: '_delete')]
     public function index(
         ?Project $project,
@@ -30,6 +33,7 @@ final class ProjectController extends AbstractController
     ): Response
     {
         if ($project) {
+            $this->denyAccessUnlessGranted('ROLE_ADMIN');
             $entityManager->remove($project);
             $tasks = $taskRepository->findBy(['project' => $project]);
             foreach ($tasks as $task) {
@@ -64,6 +68,7 @@ final class ProjectController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: '_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     #[Route('/create', name: '_create')]
     public function edit(?Project $project, Request $request, EntityManagerInterface $entityManager): Response

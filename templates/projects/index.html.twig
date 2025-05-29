@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'content.html.twig' %}
 
 {% block title %}
     Liste des Projets
@@ -16,17 +16,21 @@
                 <a href="{{ path('app_home_show', {id: project.id}) }}">
                     <h2>{{ project.name }}</h2>
                 </a>
-                <div class="card-project-icons">
-                    <a href="{{ path('app_home_edit', {id: project.id}) }}"><i class="fa-solid fa-pen"></i></a>
-                    <a href="{{ path('app_home_delete', {id: project.id}) }}"><i class="fa-solid fa-trash"></i></a>
-                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="card-project-icons">
+                        <a href="{{ path('app_home_edit', {id: project.id}) }}"><i class="fa-solid fa-pen"></i></a>
+                        <a href="{{ path('app_home_delete', {id: project.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                {% endif %}
             </article>
         {% endfor %}
-        <article class="card-project">
-            <a href="{{ path('app_home_create') }}">
-                <i class="fa-solid fa-circle-plus add-project-icon"></i>
-                <h2>Ajouter un projet</h2>
-            </a>
-        </article>
+        {% if is_granted('ROLE_ADMIN') %}
+            <article class="card-project">
+                <a href="{{ path('app_home_create') }}">
+                    <i class="fa-solid fa-circle-plus add-project-icon"></i>
+                    <h2>Ajouter un projet</h2>
+                </a>
+            </article>
+        {% endif %}
     </div>
 {% endblock %}

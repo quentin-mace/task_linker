@@ -1,5 +1,125 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
 
+.auth-bg {
+  width: 100%;
+  min-height: 100vh;
+  background: url(../images/bg-auth.svg) center center no-repeat;
+  background-size: cover;
+}
+
+.auth-logo {
+  position: absolute;
+  top: 52px;
+  left: 52px;
+}
+
+.auth-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 40%;
+  background-color: #4D8077;
+  padding: 40px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.auth-form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.form-link {
+  color: white;
+  margin: 10px;
+}
+
+.form-link:visited {
+  color: white;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 22px;
+}
+
+hr.solid {
+  border-top: 1px solid #ffffff;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+#registration_form label {
+  color: white;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ffffff; /* Blanc pour correspondre au texte */
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  transition: all 0.2s ease;
+}
+
+.checkbox input[type="checkbox"]:checked {
+  background-color: #B1D89D; /* Couleur du bouton de votre thème */
+  border-color: #B1D89D;
+}
+
+.checkbox input[type="checkbox"]:checked::before {
+  content: "✓";
+  position: absolute;
+  color: #4D8077; /* Couleur de fond principale */
+  font-size: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkbox input[type="checkbox"]:hover {
+  border-color: #B1D89D;
+}
+
+.checkbox label {
+  cursor: pointer;
+  user-select: none;
+  color: #ffffff; /* Blanc pour correspondre au formulaire */
+  margin: 0;
+  padding: 0;
+}
+
+
+
 html,
 body {
   margin: 0;
@@ -83,10 +203,13 @@ header {
   background: #4d8077;
   height: 155px;
   padding: 30px 80px 10px 80px;
+  display: flex;
+  flex-direction: column;
 }
 
 div#current-user {
   height: 55px;
+  align-self: end;
 }
 
 div#title-page h1 {
@@ -194,6 +317,20 @@ div#projects-container {
   border: 1px solid lightgray;
 }
 
+.avatar-user {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -12px;
+  background: #ffffff;
+  font: bold 18px Manrope, serif;
+  color: #4D8077;
+  text-decoration: none;
+}
+
 .user-list {
   display: flex;
   color: #fff;
@@ -216,6 +353,7 @@ div#projects-container {
   letter-spacing: 0;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
 }
 
 div#tasks-container {
@@ -450,6 +588,11 @@ button.button.button-submit {
   color: #ffffff;
   height: 70px;
   margin-top: 5px;
+}
+
+button.button.button-submit.button-login {
+  background: #B1D89D;
+  color: #4D8077;
 }
 
 form ul {

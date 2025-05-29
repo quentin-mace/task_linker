@@ -16,6 +16,18 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            remember_me: true
+            form_login:
+                default_target_path: app_home
+                target_path_parameter: app_home
+                failure_path_parameter: app_dispatch_login
+                login_path: app_dispatch_login
+                check_path: app_dispatch_login
+                enable_csrf: true
+            logout:
+                path: app_dispatch_logout
+                target: app_dispatch
+                # where to redirect after logout
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -26,8 +38,13 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/employee, roles: ROLE_ADMIN }
+        - { path: ^/home, roles: ROLE_USER }
+        - { path: ^/task, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_USER: ~
+        ROLE_ADMIN: ROLE_USER
 
 when@test:
     security:
