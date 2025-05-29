@@ -17,6 +17,7 @@ use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('IS_AUTHENTICATED')]
 #[Route('', name: 'app_home')]
 #[Route('/home', name: 'app_home')]
 final class ProjectController extends AbstractController

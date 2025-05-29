@@ -22,6 +22,7 @@
                     Projets
                 </a>
             </li>
+            {% if is_granted('ROLE_ADMIN') %}
             <li
                     {% if employee %}
                         class="active"
@@ -32,6 +33,7 @@
                     Équipe
                 </a>
             </li>
+            {% endif %}
         </ul>
     </nav>
     <main>
