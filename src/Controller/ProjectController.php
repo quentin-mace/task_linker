@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('IS_AUTHENTICATED')]
@@ -29,7 +30,7 @@ final class ProjectController extends AbstractController
         ?Project $project,
         ProjectRepository $projectRepository,
         TaskRepository $taskRepository,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): Response
     {
         if ($project) {
@@ -42,7 +43,11 @@ final class ProjectController extends AbstractController
             $entityManager->flush();
         }
 
-        $projects = $projectRepository->findAll();
+        if (in_array('ROLE_ADMIN', $this->getUser()->getRoles() )) {
+            $projects = $projectRepository->findAll();
+        } else {
+            $projects = $projectRepository->findByEmployee($this->getUser());
+        }
 
         return $this->render('projects/index.html.twig', [
             'projects' => $projects,
@@ -57,6 +62,9 @@ final class ProjectController extends AbstractController
         TaskRepository $taskRepository,
     ): Response
     {
+        if ($project) {
+            $this->denyAccessUnlessGranted('project.is_assigned', $project);
+        }
         if ($taskId) {
             $task = $taskRepository->find($taskId);
             $entityManager->remove($task);
