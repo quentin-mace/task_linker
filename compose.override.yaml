@@ -10,9 +10,22 @@ services:
   mailer:
     image: axllent/mailpit
     ports:
-      - "1025"
-      - "8025"
+      - "1025:1025"
+      - "8025:8025"
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
-###< symfony/mailer ###
+    networks:
+      - tasklinker_network
+      ###< symfony/mailer ###
+
+
+  messenger-worker:
+    image: php:8.2-cli
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: php bin/console messenger:consume async --time-limit=3600
+    depends_on:
+      - mailer
+    restart: unless-stopped
