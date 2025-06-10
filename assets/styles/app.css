@@ -574,7 +574,7 @@ form label {
   flex-grow: 0;
 }
 
-button.button.button-submit {
+button.button.button-submit input.button.button-submit {
   width: 100%;
   background: #1f5b50;
   border-radius: 10px;
