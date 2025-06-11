@@ -8,6 +8,7 @@ use App\Entity\Role;
 use App\Entity\Task;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -47,7 +48,16 @@ class EmployeeType extends AbstractType
                     'placeholder' => 'Entrez le type de contrat',
                 ],
             ])
-        ;
+            ->add('roles', ChoiceType::class, [
+                'label' => 'Administrateur ?',
+                'choices' => [
+                    'Non' => 'ROLE_USER',
+                    'Oui' => 'ROLE_ADMIN',
+                ],
+                'expanded' => false,
+                'multiple' => false,
+                'mapped' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
