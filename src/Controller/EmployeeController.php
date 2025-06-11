@@ -50,6 +50,8 @@ final class EmployeeController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $roles = $form->get('roles')->getData();
+            $employee->setRoles([$roles]);
             $entityManager->persist($employee);
             $entityManager->flush();
             return $this->redirectToRoute('app_employee_index');

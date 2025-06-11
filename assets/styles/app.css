@@ -574,7 +574,7 @@ form label {
   flex-grow: 0;
 }
 
-button.button.button-submit input.button.button-submit {
+button.button.button-submit {
   width: 100%;
   background: #1f5b50;
   border-radius: 10px;
@@ -681,5 +681,13 @@ form
   ul#main-menu li a {
     border-radius: 0;
     padding: 13px;
+  }
+
+  .form-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
   }
 }
